@@ -1,0 +1,31 @@
+##### Java project #####
+
+patient :
+name
+last name
+date of birth
+address
+phone
+security number
+bood group
+insurance company
+employer
+(job)
+(state (new/current/former))
+
+Doctor :
+name
+last name
+date of birth
+address
+phone
+seniority
+date of employment
+speciality
+
+Appointment :
+date
+doctor
+patient
+price
+(duration)
