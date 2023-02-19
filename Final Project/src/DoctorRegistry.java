@@ -40,6 +40,10 @@ public class DoctorRegistry {
         return matchingDoctors;
     }
 
+    public int getNumberOfDoctors() {
+        return doctors.size();
+    }
+
 
     public Doctor getDoctor(int i) {
         return doctors.get(i);
@@ -52,5 +56,11 @@ public class DoctorRegistry {
             }
         }
         return null;
+    }
+
+    public void printAllDoctors() {
+        for (Doctor doctor : doctors) {
+            System.out.println(doctor);
+        }
     }
 }

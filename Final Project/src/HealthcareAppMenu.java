@@ -1,17 +1,14 @@
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.io.IOException;
 
 public class HealthcareAppMenu {
 
-    public class CLS {
-        public static void main(String... arg) throws IOException, InterruptedException {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        }
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
     private static final Scanner scanner = new Scanner(System.in);
     private static final PatientRegistry patientRegistry = new PatientRegistry();
@@ -20,19 +17,30 @@ public class HealthcareAppMenu {
     private static final InsuranceProcessor insuranceProcessor = new InsuranceProcessor();
     private static final BillingProcessor billingProcessor = new BillingProcessor();
 
-    public static void main(String[] args) throws ParseException {
+    private static final InsuranceProcessorTest insuranceProcessorTest = new InsuranceProcessorTest();
+
+    public static void main(String[] args) throws ParseException, IOException, InterruptedException {
         Date date = new Date();
 
-        //Treatment treatment1 = new Treatment(patientRegistry.getPatient(1), doctorRegistry.getDoctor(1), "Treatment 1", date);
+        ArrayList<Treatment> MedicalHistory1 = new ArrayList<>();
+        ArrayList<Treatment> MedicalHistory2 = new ArrayList<>();
+        ArrayList<Treatment> MedicalHistory3 = new ArrayList<>();
 
-
-        Patient patient1 = new Patient("John Doe", date, 1, null, "123 Main St", 5551234, "Blue Cross", "12345",  123445);
-        Patient patient2 = new Patient("Jane Doe", date, 2, null, "123 Main St", 5551234, "Blue Cross", "12345",  123445);
-        Patient patient3 = new Patient("Bob Smith", date, 3, null, "123 Main St", 123456, "12345", "Blue LOCAL", 123445);
+        Patient patient1 = new Patient("John Doe", date, 1, MedicalHistory1, "123 Main St", 5551234, "Blue Cross", "12345",  123445);
+        Patient patient2 = new Patient("Jane Doe", date, 2, MedicalHistory2, "123 Main St", 5551234, "Blue Cross", "12345",  123445);
+        Patient patient3 = new Patient("Bob Smith", date, 3, MedicalHistory3, "123 Main St", 123456, "12345", "Blue LOCAL", 123445);
 
         Doctor doctor1 = new Doctor(1,"John Smith", date, "1", "123 Main St", 5551234, 20, date, "Cardiology");
         Doctor doctor2 = new Doctor(1, "Jane Smith", date, "2", "123 Main St", 5551234, 20, date, "Cardiology");
         Doctor doctor3 = new Doctor(1, "Bob Doe", date, "3", "123 Main St", 5551234, 20, date, "Cardiology");
+
+        Treatment treatment1 = new Treatment(patient1, doctor1, "Treatment 1", date);
+        Treatment treatment2 = new Treatment(patient2, doctor2, "Treatment 2", date);
+        Treatment treatment3 = new Treatment(patient3, doctor3, "Treatment 3", date);
+
+        patient1.getMedicalHistory().add(treatment1);
+        patient2.getMedicalHistory().add(treatment2);
+        patient3.getMedicalHistory().add(treatment3);
 
         patientRegistry.addPatient(patient1);
         patientRegistry.addPatient(patient2);
@@ -45,29 +53,12 @@ public class HealthcareAppMenu {
         int choice;
         do {
             System.out.println("===== Healthcare App Menu =====");
-            System.out.println("1. Register a new patient");
-            System.out.println("2. Register a new doctor");
-            System.out.println("3. Schedule a new appointment");
-            System.out.println("4. Cancel an appointment");
-            System.out.println("5. Verify insurance for a patient");
-            System.out.println("6. Process insurance claim");
-            System.out.println("7. Generate a new bill");
-            System.out.println("8. Process a payment");
-            System.out.println("9. View unpaid bills");
-            System.out.println("10. View all patients");
-            System.out.println("11. View all doctors");
-            System.out.println("12. View all appointments");
-            System.out.println("13. View all insurance providers");
-            System.out.println("14. View all bills");
-            System.out.println("0. Exit");
-
             System.out.println("Who are you?");
             System.out.println("1. Receptionist");
             System.out.println("2. Doctor");
             System.out.println("3. Finance");
             System.out.println("4. Test Panel");
             System.out.println("0. Exit");
-
 
 
             System.out.print("Enter your choice: ");
@@ -82,37 +73,34 @@ public class HealthcareAppMenu {
                 default -> System.out.println("Invalid choice, please try again.");
             }
 
-            switch (choice) {
-                case 1 -> registerPatient();
-                case 2 -> registerDoctor();
-                case 3 -> scheduleAppointment();
-                case 4 -> cancelAppointment();
-                case 5 -> verifyInsurance();
-                case 6 -> processInsuranceClaim();
-                case 7 -> generateBill();
-                case 8 -> processPayment();
-                case 9 -> viewUnpaidBills();
-                case 0 -> System.out.println("Exiting...");
-                default -> System.out.println("Invalid choice, please try again.");
-            }
-
             System.out.println();
         } while (choice != 0);
     }
 
-    private static void testPanel() {
-    }
-
-    private static void financeMenu() {
+    private static void financeMenu() throws ParseException {
         System.out.println("===== Healthcare App Menu =====");
         System.out.println("===== Finance Menu =====");
         System.out.println("1. Process insurance claim");
         System.out.println("2. Generate a new bill");
+        System.out.println("3. Process a payment");
+        System.out.println("4. View unpaid bills");
+        System.out.println("0. Exit");
 
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
 
+        switch (choice) {
+            case 1 -> processInsuranceClaim();
+            case 2 -> generateBill();
+            case 3 -> processPayment();
+            case 4 -> viewUnpaidBills();
+            case 0 -> System.out.println("Exiting...");
+            default -> System.out.println("Invalid choice, please try again.");
+        }
     }
 
-    private static void doctorMenu() throws ParseException {
+    private static void doctorMenu() throws ParseException, IOException, InterruptedException {
+        clearScreen();
         System.out.println("===== Healthcare App Menu =====");
         System.out.println("===== Doctor Menu =====");
         System.out.println("1. Schedule a new appointment");
@@ -140,16 +128,50 @@ public class HealthcareAppMenu {
 
     }
 
-    private static void addTreatment() {
+    private static void testPanel() {
+        insuranceProcessorTest.setUp();
+        insuranceProcessorTest.testVerifyInsuranceWithInvalidProvider();
+        insuranceProcessorTest.testVerifyInsuranceWithValidProvider();
+        insuranceProcessorTest.testProcessClaimWithValidProvider();
+        insuranceProcessorTest.testProcessClaimWithInvalidProvider();
 
     }
 
+    private static void addTreatment() {
+        System.out.println("===== Healthcare App Menu =====");
+        System.out.println("===== Add Treatment =====");
+        patientRegistry.printPatients();
+        System.out.println("Enter the patient ID: ");
+        int patientID = scanner.nextInt();
+        Patient patient = patientRegistry.getPatient(patientID);
+        System.out.println("Enter the treatment: ");
+        String treatmentDescription = scanner.next();
+        doctorRegistry.printAllDoctors();
+        System.out.println("Enter the doctor ID: ");
+        int doctorID = scanner.nextInt();
+        Doctor doctor = doctorRegistry.getDoctor(doctorID);
+        System.out.println("Enter the date: ");
+        String date1 = scanner.next();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = null;
+        try {
+            date = formatter.parse(date1);
+        } catch (ParseException e) {
+            // Handle invalid date format
+            System.out.println("Invalid date format. Please try again.");
+            return;
+        }
+        Treatment treatment = new Treatment(patient,  doctor, treatmentDescription, date);
+        patient.getMedicalHistory().add(treatment);
+    }
+
     private static void viewAllAppointments() {
+        appointmentScheduler.printAppointments();
 
     }
 
     private static void viewAllPatient() {
-
+        patientRegistry.printPatients();
     }
 
     private static void receptionistMenu() throws ParseException {
@@ -333,10 +355,58 @@ public class HealthcareAppMenu {
         System.out.println("===== Register Doctor =====");
         System.out.println("Enter the doctor's name: ");
         String name = scanner.next();
+        int doctorID = doctorRegistry.getNumberOfDoctors() + 1;
+        System.out.println("The Doctor ID is: " + doctorID);
         System.out.println("Enter the doctor's specialty: ");
-
+        String specialty = scanner.next();
+        System.out.println("Enter the doctor's date of birth : ");
+        String dob = scanner.next();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = null;
+        try {
+            date = formatter.parse(dob);
+        } catch (ParseException e) {
+            // Handle invalid date format
+            System.out.println("Invalid date format. Please try again.");
+            return;
+        }
+        System.out.println("Enter the doctor's last name :");
+        String lastName = scanner.next();
+        System.out.println("Enter the doctor's phone number: ");
+        int phoneNumber;
+        try {
+            phoneNumber = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            // Handle invalid phone number format
+            System.out.println("Invalid phone number format. Please try again.");
+            return;
+        }
+        System.out.println("Enter the doctor's address: ");
+        String address = scanner.next();
+        System.out.println("Enter the doctor's seneriority : ");
+        int seniority;
+        try {
+            seniority = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            // Handle invalid seniority format
+            System.out.println("Invalid seniority format. Please try again.");
+            return;
+        }
+        System.out.println("Enter the doctor's date of employment : ");
+        String doj = scanner.next();
+        SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+        Date date1 = null;
+        try {
+            date1 = formatter1.parse(doj);
+        } catch (ParseException e) {
+            // Handle invalid date format
+            System.out.println("Invalid date format. Please try again.");
+            return;
+        }
+        Doctor doctor = new Doctor(doctorID, name, date, lastName, address, phoneNumber, seniority, date1, specialty);
+        doctorRegistry.addDoctor(doctor);
+        System.out.println("Doctor registered successfully.");
     }
-
     private static void scheduleAppointment() throws ParseException {
         AppointmentScheduler appointmentScheduler = new AppointmentScheduler();
         System.out.println("===== Schedule Appointment =====");
@@ -348,7 +418,6 @@ public class HealthcareAppMenu {
                 System.out.println("No matching patients found.");
                 return;
             }
-        //Patient patient = new Patient(patientName, null, null, null, null, 0, null, 0, null, 0);
         System.out.println("Enter the doctor's name: ");
         String doctorName = scanner.next();
         List<Doctor> matchingDoctors = doctorRegistry.findDoctorsByName(doctorName);

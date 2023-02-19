@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,10 +10,12 @@ public class Patient extends Person {
     private String insuranceCompany;
     private String Employer;
     private int ssnNumber;
-    private List<Treatment> MedicalHistory;
+    private ArrayList<Treatment> MedicalHistory;
 
 
-    public Patient(String name, Date dateOfBirth, int ID, List<Treatment> MedicalHistory, String address, int phoneNumber, String insuranceCompany,  String employer, int ssnNumber) {
+
+
+    public Patient(String name, Date dateOfBirth, int ID, ArrayList<Treatment> MedicalHistory, String address, int phoneNumber, String insuranceCompany,  String employer, int ssnNumber) {
         super(name, dateOfBirth);
         this.ID = ID;
         this.MedicalHistory = MedicalHistory;
@@ -30,11 +33,11 @@ public class Patient extends Person {
     public List<Treatment> getMedicalHistory() {
         return this.MedicalHistory;
     }
-    public void setMedicalHistory(List<Treatment> medicalHistory) {
-        this.MedicalHistory = medicalHistory;
-    }
     public void addMedicalHistory(Treatment treatment) {
         this.MedicalHistory.add(treatment);
+    }
+    public void setMedicalHistory(ArrayList<Treatment> medicalHistory) {
+        this.MedicalHistory = medicalHistory;
     }
     public void removeMedicalHistory(Treatment treatment) {
         this.MedicalHistory.remove(treatment);
@@ -92,6 +95,7 @@ public class Patient extends Person {
     public void setSsnNumber(int ssnNumber) {
         this.ssnNumber = ssnNumber;
     }
+
 
 
     @Override

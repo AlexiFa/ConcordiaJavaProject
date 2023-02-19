@@ -66,8 +66,10 @@ public class Bill {
         return "Bill for " + patient.getName() + " for $" + amount + " on " + date;
     }
 
+
     public int getBillId() {
-        return  billId;
+        return billId;
     }
+
 
 }

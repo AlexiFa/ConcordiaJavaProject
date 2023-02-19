@@ -50,4 +50,10 @@ public class AppointmentScheduler {
         }
         return null;
     }
+
+    public void printAppointments() {
+        for (Appointment appointment : appointments) {
+            System.out.println(appointment);
+        }
+    }
 }
