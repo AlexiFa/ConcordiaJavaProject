@@ -7,7 +7,6 @@ public class DoctorRegistry {
     public DoctorRegistry() {
         doctors = new ArrayList<>();
     }
-
     public void addDoctor(Doctor doctor) {
         doctors.add(doctor);
     }
