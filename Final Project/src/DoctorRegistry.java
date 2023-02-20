@@ -30,7 +30,7 @@ public class DoctorRegistry {
         return matchingDoctors;
     }
 
-    public List<Doctor> findDoctorsBySpecialty(String specialty) {
+    public  List<Doctor> findDoctorsBySpecialty(String specialty) {
         List<Doctor> matchingDoctors = new ArrayList<>();
         for (Doctor doctor : doctors) {
             if (doctor.getSpecialty().equalsIgnoreCase(specialty)) {

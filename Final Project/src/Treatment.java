@@ -46,4 +46,12 @@ public class Treatment {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    // toString
+    @Override
+    public String toString() {
+        return "Treatment{" + "patient=" + patient + ", doctor=" + doctor + ", description=" + description + ", date=" + date + '}';
+    }
 }
+
+

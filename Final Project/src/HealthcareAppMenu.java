@@ -6,7 +6,9 @@ import java.io.IOException;
 
 
 //TODO :
-// change method findDoctorByName to findDoctorByID
+// change method findDoctorByName to findDoctorByID in AppointmentScheduler
+// change method findPatientByName to findPatientByID in cancelAppointment
+// try input InputMismatchException  on all menus
 public class HealthcareAppMenu {
 
     public static void clearScreen() {
@@ -174,7 +176,6 @@ public class HealthcareAppMenu {
 
     private static void viewAllAppointments() {
         appointmentScheduler.printAppointments();
-
     }
 
     private static void viewAllPatient() {
@@ -251,10 +252,8 @@ public class HealthcareAppMenu {
             int id = patientRegistry.getLastPatientID() + 1;
             System.out.println("The Patient ID is: " + id);
 
-            // Ask for the patient's medical history
-            // TODO - Implement medical history
-
             // Ask for the patient's phone number
+
             System.out.println("Enter the patient's phone number: ");
             int phoneNumber;
             try {
