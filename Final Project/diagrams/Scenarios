@@ -1,6 +1,6 @@
 Senarios :
 1.Event: A newx Patient is added to the clinic
-	Use Case: Add new Patient, main senario
+	Use Case: Add new Patient, main scenario
 		1. A new patient arrives at the hospital and needs to be added to the hospital.
 		2. The receptionist at the hospital gathers the patient's information, including their full name, date of birth, gender, address, phone number, emergency contact details, and any medical history.
 		3. 0The receptionist opens the hospital's system and navigates to the "add new patient" section.
@@ -37,3 +37,17 @@ Senarios :
 		1. The doctor enter the id of the patient, the description of the treatment and the date
 		2. A treatment is created with those informations
 		3. The treatment is added to the medical history of the patient
+
+6.Event: Pay the treatment
+	Use Case: Pay the treatment, main scenario
+		1. The receptionist enter the id of the patient and the bill
+		2. If both the patient and the bill are found, he enter the amout of the payment.
+		3. Messages are send to billingProcessor call a method which send an other message to the bill class to finally add the amount to the total
+		4. the amout to pay is printed in the console prompt
+
+7.Event: Generate bill
+	Use Case: Generate bill, main scenario
+		1. The finance enter the patient id, the date of the appointment and thne amout of the payment
+		2. A message is send to the billingProcessor class and call the generateBill method
+		3. the method create a Bill with those informations
+		4. the bill is added to an array which store all the bills
