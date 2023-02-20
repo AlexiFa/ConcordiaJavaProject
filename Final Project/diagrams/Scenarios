@@ -1,0 +1,39 @@
+Senarios :
+1.Event: A newx Patient is added to the clinic
+	Use Case: Add new Patient, main senario
+		1. A new patient arrives at the hospital and needs to be added to the hospital.
+		2. The receptionist at the hospital gathers the patient's information, including their full name, date of birth, gender, address, phone number, emergency contact details, and any medical history.
+		3. 0The receptionist opens the hospital's system and navigates to the "add new patient" section.
+		4. They enter the patient's information, ensuring that all information is accurate and complete.
+		5. The receptionist assigns the patient a unique patient identification number that will be used to identify them in the hospital's system.
+		6. They also indicate the patient's medical insurance details, if applicable.
+		7. The system send a message to the PatientRegistery class and the method addPatient is called.
+
+2.Event: A new doctor is added to the hospital
+	Use Case: Add new Doctor, main scenario
+		1. The hospital hires a new doctor and needs to add their information to the hospital.
+		2. The hospital's HR department gathers the doctor's information, including their full name, gender, date of birth, contact details, and medical qualifications.
+		3. The HR department opens the hospital's system and navigates to the "add new doctor" section.
+		4. They enter the doctor's information into the system, ensuring that all information is accurate and complete.
+		5. The system assigns the doctor a unique identification number that will be used to identify them in the hospital's system.
+		6. They also indicate the doctor's areas of expertise and specialization.
+		7. Once all the information has been entered and verified, the HR department saves the doctor's details.
+		8. A message is send to the DoctorRegistery class and the method addDoctor is called.
+
+3.Event: Verify patient's insurance
+	Use Case: Verify Insurance, main scenario
+		1. Receptionist enters patient's insurance details into the hospital's system.
+		2. System send a message to insuranceProcessor to verifiy the insurance of the patient
+		3. The result of the verification is printed in the console prompt
+
+4.Event: Cancel an appointment
+	Use Case: Cancel appointment, main scenario
+		1. The system ask to enter the patient and the doctor appointment
+		2. A message is send to appointmentScheduler and the method findAppointment with those informations
+		3. If the appointment is found, an other message is send to appointmentShreduler to run the method cancelAppointment.
+
+5.Event: Add a treatment
+	Use Case: Add a treatment, main scenario
+		1. The doctor enter the id of the patient, the description of the treatment and the date
+		2. A treatment is created with those informations
+		3. The treatment is added to the medical history of the patient

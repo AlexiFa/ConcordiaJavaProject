@@ -20,64 +20,68 @@ public class HealthcareAppMenu {
     private static final InsuranceProcessor insuranceProcessor = new InsuranceProcessor();
     private static final BillingProcessor billingProcessor = new BillingProcessor();
 
-    private static final InsuranceProcessorTest insuranceProcessorTest = new InsuranceProcessorTest();
+    //private static final InsuranceProcessorTest insuranceProcessorTest = new InsuranceProcessorTest();
 
     public static void main(String[] args) throws ParseException, IOException, InterruptedException {
-        Date date = new Date();
+        try{
+            Date date = new Date();
 
-        ArrayList<Treatment> MedicalHistory1 = new ArrayList<>();
-        ArrayList<Treatment> MedicalHistory2 = new ArrayList<>();
-        ArrayList<Treatment> MedicalHistory3 = new ArrayList<>();
+            ArrayList<Treatment> MedicalHistory1 = new ArrayList<>();
+            ArrayList<Treatment> MedicalHistory2 = new ArrayList<>();
+            ArrayList<Treatment> MedicalHistory3 = new ArrayList<>();
 
-        Patient patient1 = new Patient("John Doe", date, 1, MedicalHistory1, "123 Main St", 5551234, "Blue Cross", "12345",  123445);
-        Patient patient2 = new Patient("Jane Doe", date, 2, MedicalHistory2, "123 Main St", 5551234, "Blue Cross", "12345",  123445);
-        Patient patient3 = new Patient("Bob Smith", date, 3, MedicalHistory3, "123 Main St", 123456, "12345", "Blue LOCAL", 123445);
+            Patient patient1 = new Patient("John Doe", date, 1, MedicalHistory1, "123 Main St", 5551234, "Blue Cross", "12345",  123445);
+            Patient patient2 = new Patient("Jane Doe", date, 2, MedicalHistory2, "123 Main St", 5551234, "Blue Cross", "12345",  123445);
+            Patient patient3 = new Patient("Bob Smith", date, 3, MedicalHistory3, "123 Main St", 123456, "12345", "Blue LOCAL", 123445);
 
-        Doctor doctor1 = new Doctor(1,"John Smith", date, "1", "123 Main St", 5551234, 20, date, "Cardiology");
-        Doctor doctor2 = new Doctor(1, "Jane Smith", date, "2", "123 Main St", 5551234, 20, date, "Cardiology");
-        Doctor doctor3 = new Doctor(1, "Bob Doe", date, "3", "123 Main St", 5551234, 20, date, "Cardiology");
+            Doctor doctor1 = new Doctor(1,"John Smith", date, "1", "123 Main St", 5551234, 20, date, "Cardiology");
+            Doctor doctor2 = new Doctor(1, "Jane Smith", date, "2", "123 Main St", 5551234, 20, date, "Cardiology");
+            Doctor doctor3 = new Doctor(1, "Bob Doe", date, "3", "123 Main St", 5551234, 20, date, "Cardiology");
 
-        Treatment treatment1 = new Treatment(patient1, doctor1, "Treatment 1", date);
-        Treatment treatment2 = new Treatment(patient2, doctor2, "Treatment 2", date);
-        Treatment treatment3 = new Treatment(patient3, doctor3, "Treatment 3", date);
+            Treatment treatment1 = new Treatment(patient1, doctor1, "Treatment 1", date);
+            Treatment treatment2 = new Treatment(patient2, doctor2, "Treatment 2", date);
+            Treatment treatment3 = new Treatment(patient3, doctor3, "Treatment 3", date);
 
-        patient1.getMedicalHistory().add(treatment1);
-        patient2.getMedicalHistory().add(treatment2);
-        patient3.getMedicalHistory().add(treatment3);
+            patient1.getMedicalHistory().add(treatment1);
+            patient2.getMedicalHistory().add(treatment2);
+            patient3.getMedicalHistory().add(treatment3);
 
-        patientRegistry.addPatient(patient1);
-        patientRegistry.addPatient(patient2);
-        patientRegistry.addPatient(patient3);
+            patientRegistry.addPatient(patient1);
+            patientRegistry.addPatient(patient2);
+            patientRegistry.addPatient(patient3);
 
-        doctorRegistry.addDoctor(doctor1);
-        doctorRegistry.addDoctor(doctor2);
-        doctorRegistry.addDoctor(doctor3);
+            doctorRegistry.addDoctor(doctor1);
+            doctorRegistry.addDoctor(doctor2);
+            doctorRegistry.addDoctor(doctor3);
 
-        int choice;
-        do {
-            System.out.println("===== Healthcare App Menu =====");
-            System.out.println("Who are you?");
-            System.out.println("1. Receptionist");
-            System.out.println("2. Doctor");
-            System.out.println("3. Finance");
-            System.out.println("4. Test Panel");
-            System.out.println("0. Exit");
+            int choice;
+            do {
+                System.out.println("===== Healthcare App Menu =====");
+                System.out.println("Who are you?");
+                System.out.println("1. Receptionist");
+                System.out.println("2. Doctor");
+                System.out.println("3. Finance");
+                System.out.println("4. Test Panel");
+                System.out.println("0. Exit");
 
 
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
+                System.out.print("Enter your choice: ");
+                choice = scanner.nextInt();
 
-            switch (choice) {
-                case 1 -> receptionistMenu();
-                case 2 -> doctorMenu();
-                case 3 -> financeMenu();
-                case 4 -> testPanel();
-                case 0 -> System.out.println("Exiting...");
-                default -> System.out.println("Invalid choice, please try again.");
-            }
+                switch (choice) {
+                    case 1 -> receptionistMenu();
+                    case 2 -> doctorMenu();
+                    case 3 -> financeMenu();
+                    case 4 -> testPanel();
+                    case 0 -> System.out.println("Exiting...");
+                    default -> System.out.println("Invalid choice, please try again.");
+                }
 
-            System.out.println();
-        } while (choice != 0);
+                System.out.println();
+            } while (choice != 0);
+        }catch (InputMismatchException e){
+            System.out.println("Error: enter a valid input");
+        }
     }
 
     private static void financeMenu() throws ParseException {
@@ -132,11 +136,11 @@ public class HealthcareAppMenu {
     }
 
     private static void testPanel() {
-        insuranceProcessorTest.setUp();
-        insuranceProcessorTest.testVerifyInsuranceWithInvalidProvider();
-        insuranceProcessorTest.testVerifyInsuranceWithValidProvider();
-        insuranceProcessorTest.testProcessClaimWithValidProvider();
-        insuranceProcessorTest.testProcessClaimWithInvalidProvider();
+//        insuranceProcessorTest.setUp();
+//        insuranceProcessorTest.testVerifyInsuranceWithInvalidProvider();
+//        insuranceProcessorTest.testVerifyInsuranceWithValidProvider();
+//        insuranceProcessorTest.testProcessClaimWithValidProvider();
+//        insuranceProcessorTest.testProcessClaimWithInvalidProvider();
 
     }
 
