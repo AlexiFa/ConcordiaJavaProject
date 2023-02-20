@@ -1,9 +1,5 @@
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
-
-
-
 public class Bill {
     private Patient patient;
     private Date date;

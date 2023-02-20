@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.IOException;
 
+
+//TODO :
+// change method findDoctorByName to findDoctorByID
 public class HealthcareAppMenu {
 
     public static void clearScreen() {
