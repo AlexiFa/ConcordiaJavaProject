@@ -5,9 +5,9 @@ import java.util.*;
 import java.io.IOException;
 
 
-//TODO :
-// change method findDoctorByName to findDoctorByID in AppointmentScheduler
-// change method findPatientByName to findPatientByID in cancelAppointment
+// TODO :
+// change method findDoctorByName to findDoctorByID in AppointmentScheduler 
+// change method findPatientByName to findPatientByID in cancelAppointment 
 // try input InputMismatchException  on all menus
 public class HealthcareAppMenu {
 
@@ -37,8 +37,8 @@ public class HealthcareAppMenu {
             Patient patient3 = new Patient("Bob Smith", date, 3, MedicalHistory3, "123 Main St", 123456, "12345", "Blue LOCAL", 123445);
 
             Doctor doctor1 = new Doctor(1,"John Smith", date, "1", "123 Main St", 5551234, 20, date, "Cardiology");
-            Doctor doctor2 = new Doctor(1, "Jane Smith", date, "2", "123 Main St", 5551234, 20, date, "Cardiology");
-            Doctor doctor3 = new Doctor(1, "Bob Doe", date, "3", "123 Main St", 5551234, 20, date, "Cardiology");
+            Doctor doctor2 = new Doctor(2, "Jane Smith", date, "2", "123 Main St", 5551234, 20, date, "Cardiology");
+            Doctor doctor3 = new Doctor(3, "Bob Doe", date, "3", "123 Main St", 5551234, 20, date, "Cardiology");
 
             Treatment treatment1 = new Treatment(patient1, doctor1, "Treatment 1", date);
             Treatment treatment2 = new Treatment(patient2, doctor2, "Treatment 2", date);
@@ -63,7 +63,7 @@ public class HealthcareAppMenu {
                 System.out.println("1. Receptionist");
                 System.out.println("2. Doctor");
                 System.out.println("3. Finance");
-                System.out.println("4. Test Panel");
+                //System.out.println("4. Test Panel");
                 System.out.println("0. Exit");
 
 
@@ -74,7 +74,7 @@ public class HealthcareAppMenu {
                     case 1 -> receptionistMenu();
                     case 2 -> doctorMenu();
                     case 3 -> financeMenu();
-                    case 4 -> testPanel();
+                    //case 4 -> testPanel();
                     case 0 -> System.out.println("Exiting...");
                     default -> System.out.println("Invalid choice, please try again.");
                 }
@@ -137,14 +137,14 @@ public class HealthcareAppMenu {
 
     }
 
-    private static void testPanel() {
+   // private static void testPanel() {
 //        insuranceProcessorTest.setUp();
 //        insuranceProcessorTest.testVerifyInsuranceWithInvalidProvider();
 //        insuranceProcessorTest.testVerifyInsuranceWithValidProvider();
 //        insuranceProcessorTest.testProcessClaimWithValidProvider();
 //        insuranceProcessorTest.testProcessClaimWithInvalidProvider();
 
-    }
+   // }
 
     private static void addTreatment() {
         System.out.println("===== Healthcare App Menu =====");
@@ -295,6 +295,7 @@ public class HealthcareAppMenu {
         }
 
     private static void cancelAppointment() {
+        //TODO
         System.out.println("Enter the patient's name: ");
         String patientName = scanner.next();
 
@@ -304,48 +305,14 @@ public class HealthcareAppMenu {
             System.out.println("No matching patients found.");
             return;
         }
-
-        // Prompt user to enter doctor's name
-        System.out.println("Enter the doctor's name: ");
-        String doctorName = scanner.next();
-
-        // Find the matching doctors by name
-        List<Doctor> matchingDoctors = doctorRegistry.findDoctorsByName(doctorName);
-        if (matchingDoctors.size() == 0) {
-            System.out.println("No matching doctors found.");
-            return;
-        }
-
-        Doctor doctorFound = null;
-
-        // If only one matching doctor is found, use that doctor
-        if (matchingDoctors.size() == 1) {
-            doctorFound = matchingDoctors.get(0);
-        } else {
-            // Otherwise, prompt the user to choose a doctor
-            System.out.println("Multiple matching doctors found. Please select one.");
-            for (int i = 0; i < matchingDoctors.size(); i++) {
-                System.out.println((i + 1) + ". " + matchingDoctors.get(i).getName());
-            }
-
-            // Get user's choice of doctor
-            int choice;
-            try {
-                choice = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input.");
-                return;
-            }
-
-            if (choice < 1 || choice > matchingDoctors.size()) {
-                System.out.println("Invalid choice.");
-                return;
-            }
-            doctorFound = matchingDoctors.get(choice - 1);
-        }
+        doctorRegistry.printAllDoctors();
+        // Prompt user to enter doctor's ID
+        System.out.println("Enter the doctor's ID: ");
+        int doctorID = scanner.nextInt();
+        Doctor doctor = doctorRegistry.findDoctorByID(doctorID);
 
         // Find the appointment for the patient and doctor
-        Appointment appointment = appointmentScheduler.findAppointment(patient, doctorFound);
+        Appointment appointment = appointmentScheduler.findAppointment(patient, doctor);
         if (appointment == null) {
             System.out.println("No matching appointment found.");
             return;
@@ -361,6 +328,8 @@ public class HealthcareAppMenu {
         System.out.println("===== Register Doctor =====");
         System.out.println("Enter the doctor's name: ");
         String name = scanner.next();
+        System.out.println("Enter the doctor's last name :");
+        String lastName = scanner.next();
         int doctorID = doctorRegistry.getNumberOfDoctors() + 1;
         System.out.println("The Doctor ID is: " + doctorID);
         System.out.println("Enter the doctor's specialty: ");
@@ -376,8 +345,6 @@ public class HealthcareAppMenu {
             System.out.println("Invalid date format. Please try again.");
             return;
         }
-        System.out.println("Enter the doctor's last name :");
-        String lastName = scanner.next();
         System.out.println("Enter the doctor's phone number: ");
         int phoneNumber;
         try {
@@ -424,28 +391,10 @@ public class HealthcareAppMenu {
                 System.out.println("No matching patients found.");
                 return;
             }
-        System.out.println("Enter the doctor's name: ");
-        String doctorName = scanner.next();
-        List<Doctor> matchingDoctors = doctorRegistry.findDoctorsByName(doctorName);
-        if (matchingDoctors.size() == 0) {
-            System.out.println("No matching doctors found.");
-            return;
-        }
-        Doctor doctorFound = null;
-        if (matchingDoctors.size() > 1) {
-            System.out.println("Multiple matching doctors found. Please enter the doctor's speciality.");
-            for (Doctor doctor : matchingDoctors) {
-                System.out.println(doctor);
-            }
-            String doctorSpecialty = scanner.next();
-            for (Doctor doctor : matchingDoctors) {
-                if (doctor.getSpecialty().equals(doctorSpecialty)) {
-                    doctorName = doctor.getName();
-                    doctorFound = new Doctor(doctor.getDoctorId(), doctor.getName(), doctor.getDateOfBirth(), doctor.getLastName(),  doctor.getAddress(), doctor.getPhoneNumber(), doctor.getSeniority(), doctor.getDateOfEmployment(), doctor.getSpecialty());
-                    break;
-                }
-            }
-        }
+            doctorRegistry.printAllDoctors();
+        System.out.println("Enter the doctor's ID: ");
+        int doctorID = scanner.nextInt();
+        Doctor doctorFound = doctorRegistry.findDoctorByID(doctorID);
         System.out.println("Enter the date of the appointment (dd-mm-yyyy) : ");
         String date = scanner.next();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
@@ -552,7 +501,7 @@ public class HealthcareAppMenu {
     }
 
     private static void viewUnpaidBills() {
-        // TODO: Implement this method
+
         System.out.println("===== View Unpaid Bills =====");
         patientRegistry.printPatients();
         System.out.println("Enter the patient's ID: ");
