@@ -1,6 +1,6 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
-public class Person {
+public abstract class Person {
     private String name;
 
     Date dateOfBirth = new Date();
