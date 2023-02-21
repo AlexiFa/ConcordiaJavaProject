@@ -1,3 +1,4 @@
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -96,25 +97,34 @@ public class Patient extends Person {
         this.ssnNumber = ssnNumber;
     }
 
-
-
     @Override
     public String toString() {
         return "Patient{" +
                 "ID=" + ID +
                 ", Name='" + getName() + '\'' +
-                ", Medical History=" + MedicalHistory +
                 ", address='" + address + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", insuranceCompany='" + insuranceCompany + '\'' +
                 ", Employer='" + Employer + '\'' +
                 ", ssnNumber=" + ssnNumber +
-                ", MedicalHistory=" + MedicalHistory +
                 '}';
     }
 
 
     public int getPatientId() {
         return ID;
+    }
+
+    /**
+     * to make a backup of the medical history in a file.out
+     */
+    public void updateMedicalHistory(){
+        try{
+            PrintWriter outFile = new PrintWriter("MedicalHistory.out");
+            System.out.println("voila");
+            outFile.close();
+        }catch (Exception e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }

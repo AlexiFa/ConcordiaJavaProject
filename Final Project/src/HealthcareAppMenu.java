@@ -1,4 +1,5 @@
 
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -172,6 +173,7 @@ public class HealthcareAppMenu {
         }
         Treatment treatment = new Treatment(patient,  doctor, treatmentDescription, date);
         patient.getMedicalHistory().add(treatment);
+        patient.updateMedicalHistory(); // to print the medical history in a file
     }
 
     private static void viewAllAppointments() {

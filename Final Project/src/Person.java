@@ -1,9 +1,9 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
 public abstract class Person {
-    private String name;
+    protected String name;
 
-    Date dateOfBirth = new Date();
+    protected Date dateOfBirth = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
 
