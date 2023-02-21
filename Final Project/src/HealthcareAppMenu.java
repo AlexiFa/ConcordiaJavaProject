@@ -39,13 +39,16 @@ public class HealthcareAppMenu {
             Doctor doctor2 = new Doctor(2, "Jane Smith", date, "2", "123 Main St", 5551234, 20, date, "Cardiology");
             Doctor doctor3 = new Doctor(3, "Bob Doe", date, "3", "123 Main St", 5551234, 20, date, "Cardiology");
 
-            //Treatment treatment1 = new Treatment(patient1, doctor1, "Treatment 1", date);
+            Treatment treatment1 = new Treatment(patient1, doctor1, "Treatment 1", date);
             Treatment treatment2 = new Treatment(patient2, doctor2, "Treatment 2", date);
             Treatment treatment3 = new Treatment(patient3, doctor3, "Treatment 3", date);
 
-            //patient1.getMedicalHistory().add(treatment1);
+            patient1.getMedicalHistory().add(treatment1);
+            patient1.updateMedicalHistory();
             patient2.getMedicalHistory().add(treatment2);
+            patient2.updateMedicalHistory();
             patient3.getMedicalHistory().add(treatment3);
+            patient3.updateMedicalHistory();
 
             patientRegistry.addPatient(patient1);
             patientRegistry.addPatient(patient2);
