@@ -27,6 +27,8 @@ public class HealthcareAppMenu {
         try{
             Date date = new Date();
 
+            // ##############################  DATA FOR TESTS  ##################################
+            
             ArrayList<Treatment> MedicalHistory1 = new ArrayList<>();
             ArrayList<Treatment> MedicalHistory2 = new ArrayList<>();
             ArrayList<Treatment> MedicalHistory3 = new ArrayList<>();
@@ -62,6 +64,7 @@ public class HealthcareAppMenu {
             appointmentScheduler.scheduleAppointment(patient2, doctor2, date, 100, 20, 2);
             appointmentScheduler.scheduleAppointment(patient3, doctor3, date, 100, 20, 3);
 
+            // #############################  MAIN MENU  ########################################
 
             int choice;
             do {
