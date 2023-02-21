@@ -39,11 +39,11 @@ public class HealthcareAppMenu {
             Doctor doctor2 = new Doctor(2, "Jane Smith", date, "2", "123 Main St", 5551234, 20, date, "Cardiology");
             Doctor doctor3 = new Doctor(3, "Bob Doe", date, "3", "123 Main St", 5551234, 20, date, "Cardiology");
 
-            Treatment treatment1 = new Treatment(patient1, doctor1, "Treatment 1", date);
+            //Treatment treatment1 = new Treatment(patient1, doctor1, "Treatment 1", date);
             Treatment treatment2 = new Treatment(patient2, doctor2, "Treatment 2", date);
             Treatment treatment3 = new Treatment(patient3, doctor3, "Treatment 3", date);
 
-            patient1.getMedicalHistory().add(treatment1);
+            //patient1.getMedicalHistory().add(treatment1);
             patient2.getMedicalHistory().add(treatment2);
             patient3.getMedicalHistory().add(treatment3);
 
@@ -185,9 +185,10 @@ public class HealthcareAppMenu {
         patientRegistry.printPatients();
         System.out.println("Enter the patient ID: ");
         int patientID = scanner.nextInt();
+        scanner.nextLine(); // to clear the buffer
         Patient patient = patientRegistry.getPatient(patientID);
         System.out.println("Enter the treatment: ");
-        String treatmentDescription = scanner.next();
+        String treatmentDescription = scanner.nextLine();
         doctorRegistry.printAllDoctors();
         System.out.println("Enter the doctor ID: ");
         int doctorID = scanner.nextInt();
@@ -393,7 +394,7 @@ public class HealthcareAppMenu {
         System.out.println("Doctor registered successfully.");
     }
     private static void scheduleAppointment() throws ParseException {
-        AppointmentScheduler appointmentScheduler = new AppointmentScheduler();
+        //AppointmentScheduler appointmentScheduler = new AppointmentScheduler();
         System.out.println("===== Schedule Appointment =====");
         patientRegistry.printPatients();
         System.out.println("Enter the patient's ID: ");

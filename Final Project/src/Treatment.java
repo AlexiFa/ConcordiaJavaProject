@@ -50,7 +50,7 @@ public class Treatment {
     // toString
     @Override
     public String toString() {
-        return "Treatment{" + "patient=" + patient + ", doctor=" + doctor + ", description=" + description + ", date=" + date + '}';
+        return "doctor = " + doctor + "\ndescription = " + description + "\ndate = " + date + "\n";
     }
 }
 

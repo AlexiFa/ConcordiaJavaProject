@@ -50,7 +50,10 @@ public class PatientRegistry {
 
     // get a patient from the registry by their index in the list
     public Patient getPatient(int i) {
-        return patients.get(i);
+        if (i < 1 || i > patients.size()) {
+            return null;
+        }
+        return patients.get(i-1);
     }
 
     // print all patients in the registry

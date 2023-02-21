@@ -25,6 +25,7 @@ public class Patient extends Person {
         this.insuranceCompany = insuranceCompany;
         this.Employer = employer;
         this.ssnNumber = ssnNumber;
+        updateMedicalHistory();
     }
 
     public int getPatientID() {
@@ -120,8 +121,12 @@ public class Patient extends Person {
      */
     public void updateMedicalHistory(){
         try{
-            PrintWriter outFile = new PrintWriter("MedicalHistory.out");
-            System.out.println("voila");
+            PrintWriter outFile = new PrintWriter("MedicalHistory" + this.ID + ".out");
+            outFile.println("Name: " + this.getName() + "\n" + "Date of Birth: " + this.getDateOfBirth() + "\n" + "ID: " + this.ID + "\n" + "Medical History: ");
+            outFile.println();
+            for(Treatment treatment : MedicalHistory){
+                outFile.println(treatment);
+            }
             outFile.close();
         }catch (Exception e){
             System.out.println("Error: " + e.getMessage());
