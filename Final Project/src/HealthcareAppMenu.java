@@ -28,7 +28,7 @@ public class HealthcareAppMenu {
             Date date = new Date();
 
             // ##############################  DATA FOR TESTS  ##################################
-            
+
             ArrayList<Treatment> MedicalHistory1 = new ArrayList<>();
             ArrayList<Treatment> MedicalHistory2 = new ArrayList<>();
             ArrayList<Treatment> MedicalHistory3 = new ArrayList<>();
