@@ -46,7 +46,10 @@ public class DoctorRegistry {
 
 
     public Doctor getDoctor(int i) {
-        return doctors.get(i);
+        if (i < 1 || i > doctors.size()) {
+            return null;
+        }
+        return doctors.get(i-1);
     }
 
     public Doctor findDoctorByID(int id) {

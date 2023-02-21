@@ -1,5 +1,9 @@
 Name: Jane Doe
-Date of Birth: Mon Feb 20 22:18:34 EST 2023
+Date of Birth: Mon Feb 20 22:26:19 EST 2023
 ID: 2
 Medical History: 
+
+doctor = Doctor{doctorId=2, lastName='2', address='123 Main St', phoneNumber=5551234, seniority=20, dateOfEmployment=Mon Feb 20 22:26:19 EST 2023, speciality='Cardiology'}
+description = Treatment 2
+date = Mon Feb 20 22:26:19 EST 2023
 
