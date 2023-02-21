@@ -83,4 +83,8 @@ public class BillingProcessor {
             }
         }
     }
+
+    public int getNumberOfBills() {
+        return bills.size();
+    }
 }

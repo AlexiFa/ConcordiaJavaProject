@@ -65,7 +65,7 @@ public class AppointmentScheduler {
         appointments.remove(appointment);
     }
 
-    public Appointment gAppointmentByID(int id) {
+    public Appointment getAppointmentByID(int id) {
         for (Appointment appointment : appointments) {
             if (appointment.getId() == id) {
                 return appointment;

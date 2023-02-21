@@ -23,8 +23,6 @@ public class HealthcareAppMenu {
     private static final InsuranceProcessor insuranceProcessor = new InsuranceProcessor();
     private static final BillingProcessor billingProcessor = new BillingProcessor();
 
-    //private static final InsuranceProcessorTest insuranceProcessorTest = new InsuranceProcessorTest();
-
     public static void main(String[] args) throws ParseException, IOException, InterruptedException {
         try{
             Date date = new Date();
@@ -226,7 +224,11 @@ public class HealthcareAppMenu {
         insuranceProcessor.printProviders();
     }
     public static void viewAllBills() {
-        billingProcessor.printBills();
+        if(billingProcessor.getNumberOfBills() == 0)
+            System.out.println("No bills to display.");
+        else{
+            billingProcessor.printBills();
+        }
     }
     // This method registers a new patient by prompting the user for various pieces of information
         private static void registerPatient() {
@@ -315,7 +317,7 @@ public class HealthcareAppMenu {
             appointmentScheduler.printAppointments();
             System.out.println("Enter the appointment's ID: ");
             int appointmentID = scanner.nextInt();
-            Appointment appointment = appointmentScheduler.gAppointmentByID(appointmentID);
+            Appointment appointment = appointmentScheduler.getAppointmentByID(appointmentID);
             System.out.println(appointment);
             if (appointment == null) {
                 System.out.println("Invalid appointment ID.");
@@ -481,20 +483,24 @@ public class HealthcareAppMenu {
             System.out.println("No matching patients found.");
             return;
         }
-        System.out.println("Enter the date of the appointment (dd-mm-yyyy) : ");
-        String date = scanner.next();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-        Date dateOfAppointment = null;
-        try {
-            dateOfAppointment = formatter.parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+
+        Date date = null;
+        String dateOfA = scanner.next();
+        do{System.out.println("Enter the date of the appointment (dd-mm-yyyy) : ");
+            // Parse the date of birth
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            try {
+                date = formatter.parse(dateOfA);
+            } catch (ParseException e) {
+                // Handle invalid date format
+                System.out.println("Invalid date format. Please try again.");
+                return;
+            }}while(date == null);
         System.out.println("Enter the amount of the appointment: ");
         int amount = scanner.nextInt();
 
 
-        billingProcessor.generateBill(patient, dateOfAppointment, amount);
+        billingProcessor.generateBill(patient, date, amount);
     }
 
     private static void processPayment() {
