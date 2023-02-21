@@ -2,7 +2,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 public class Patient extends Person {
     private final int ID;
     private Treatment treatment;
@@ -12,9 +11,6 @@ public class Patient extends Person {
     private String Employer;
     private int ssnNumber;
     private ArrayList<Treatment> MedicalHistory;
-
-
-
 
     public Patient(String name, Date dateOfBirth, int ID, ArrayList<Treatment> MedicalHistory, String address, int phoneNumber, String insuranceCompany,  String employer, int ssnNumber) {
         super(name, dateOfBirth);
@@ -110,7 +106,6 @@ public class Patient extends Person {
                 ", ssnNumber=" + ssnNumber +
                 '}';
     }
-
 
     public int getPatientId() {
         return ID;

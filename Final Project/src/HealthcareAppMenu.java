@@ -306,9 +306,7 @@ public class HealthcareAppMenu {
         }
 
     private static void cancelAppointment() {
-        //TODO
         System.out.println("===== Cancel Appointment =====");
-
         if(appointmentScheduler.getNumberOfAppointments() == 0) {
             System.out.println("No appointments to cancel.");
             return;
@@ -327,7 +325,6 @@ public class HealthcareAppMenu {
             // Cancel the appointment
             appointmentScheduler.cancelAppointment(appointment);
             System.out.println("Appointment cancelled successfully.");}
-        // Print all appointments
     }
     private static void registerDoctor() {
         System.out.println("===== Register Doctor =====");

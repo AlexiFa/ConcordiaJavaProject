@@ -16,7 +16,6 @@ public class Appointment{
         this.price = price;
         this.duration = duration;
         this.id = id;
-
     }
 
 
