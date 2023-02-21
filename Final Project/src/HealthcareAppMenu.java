@@ -101,6 +101,7 @@ public class HealthcareAppMenu {
         System.out.println("2. Generate a new bill");
         System.out.println("3. Process a payment");
         System.out.println("4. View unpaid bills");
+        System.out.println("5. View all bills");
         System.out.println("0. Exit");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
@@ -110,6 +111,7 @@ public class HealthcareAppMenu {
             case 2 -> generateBill();
             case 3 -> processPayment();
             case 4 -> viewUnpaidBills();
+            case 5 -> viewAllBills();
             case 0 -> System.out.println("Exiting...");
             default -> System.out.println("Invalid choice, please try again.");
         }
@@ -150,15 +152,11 @@ public class HealthcareAppMenu {
         System.out.println("3. Schedule a new appointment");
         System.out.println("4. Cancel an appointment");
         System.out.println("5. Verify insurance for a patient");
-        System.out.println("6. Process insurance claim");
-        System.out.println("7. Generate a new bill");
-        System.out.println("8. Process a payment");
-        System.out.println("9. View unpaid bills");
-        System.out.println("10. View all patients");
-        System.out.println("11. View all doctors");
-        System.out.println("12. View all appointments");
-        System.out.println("13. View all insurance providers");
-        System.out.println("14. View all bills");
+        System.out.println("6. Process a payment");
+        System.out.println("7. View all patients");
+        System.out.println("8. View all doctors");
+        System.out.println("9. View all appointments");
+        System.out.println("10. View all insurance providers");
         System.out.println("0. Exit");
 
         System.out.print("Enter your choice: ");
@@ -170,15 +168,11 @@ public class HealthcareAppMenu {
             case 3 -> scheduleAppointment();
             case 4 -> cancelAppointment();
             case 5 -> verifyInsurance();
-            case 6 -> processInsuranceClaim();
-            case 7 -> generateBill();
-            case 8 -> processPayment();
-            case 9 -> viewUnpaidBills();
-            case 10 -> viewAllPatient();
-            case 11 -> viewAllDoctors();
-            case 12 -> viewAllAppointments();
-            case 13 -> viewAllInsuranceProviders();
-            case 14 -> viewAllBills();
+            case 6 -> processPayment();
+            case 7 -> viewAllPatient();
+            case 8 -> viewAllDoctors();
+            case 9 -> viewAllAppointments();
+            case 10 -> viewAllInsuranceProviders();
             case 0 -> System.out.println("Exiting...");
             default -> System.out.println("Invalid choice, please try again.");
         }
