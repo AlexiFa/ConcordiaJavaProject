@@ -397,7 +397,6 @@ public class HealthcareAppMenu {
         System.out.println("Doctor registered successfully.");
     }
     private static void scheduleAppointment() throws ParseException {
-        //AppointmentScheduler appointmentScheduler = new AppointmentScheduler();
         System.out.println("===== Schedule Appointment =====");
         patientRegistry.printPatients();
         System.out.println("Enter the patient's ID: ");

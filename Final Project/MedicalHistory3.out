@@ -1,9 +1,9 @@
 Name: Bob Smith
-Date of Birth: Mon Feb 20 22:26:19 EST 2023
+Date of Birth: Mon Feb 20 22:47:08 EST 2023
 ID: 3
 Medical History: 
 
-doctor = Doctor{doctorId=3, lastName='3', address='123 Main St', phoneNumber=5551234, seniority=20, dateOfEmployment=Mon Feb 20 22:26:19 EST 2023, speciality='Cardiology'}
+doctor = Doctor{doctorId=3, lastName='3', address='123 Main St', phoneNumber=5551234, seniority=20, dateOfEmployment=Mon Feb 20 22:47:08 EST 2023, speciality='Cardiology'}
 description = Treatment 3
-date = Mon Feb 20 22:26:19 EST 2023
+date = Mon Feb 20 22:47:08 EST 2023
 
