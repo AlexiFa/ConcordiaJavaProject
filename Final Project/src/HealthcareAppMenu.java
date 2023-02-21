@@ -365,7 +365,7 @@ public class HealthcareAppMenu {
         String address;
         do{
         System.out.println("Enter the doctor's address: ");
-        address = scanner.next();}while(address.isEmpty());
+        address = scanner.nextLine();}while(address.isEmpty());
 
         System.out.println("Enter the doctor's seneriority : ");
         int seniority;
