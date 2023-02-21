@@ -3,7 +3,7 @@ import java.util.Date;
 import java.util.List;
 
 public class AppointmentScheduler {
-    private List<Appointment> appointments;
+    private static List<Appointment> appointments;
 
     public AppointmentScheduler() {
         appointments = new ArrayList<>();
