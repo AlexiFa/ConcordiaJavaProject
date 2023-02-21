@@ -31,5 +31,11 @@ public class InsuranceProcessor {
     public int getNumberOfProviders() {
         return insuranceProviders.size();
     }
+
+    public void printProviders() {
+        for (InsuranceProvider provider : insuranceProviders.values()) {
+            System.out.println(provider);
+        }
+    }
 }
 

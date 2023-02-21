@@ -57,6 +57,11 @@ public class HealthcareAppMenu {
             doctorRegistry.addDoctor(doctor2);
             doctorRegistry.addDoctor(doctor3);
 
+            appointmentScheduler.scheduleAppointment(patient1, doctor1, date, 100, 20, 1);
+            appointmentScheduler.scheduleAppointment(patient2, doctor2, date, 100, 20, 2);
+            appointmentScheduler.scheduleAppointment(patient3, doctor3, date, 100, 20, 3);
+
+
             int choice;
             do {
                 System.out.println("===== Healthcare App Menu =====");
@@ -64,7 +69,6 @@ public class HealthcareAppMenu {
                 System.out.println("1. Receptionist");
                 System.out.println("2. Doctor");
                 System.out.println("3. Finance");
-                //System.out.println("4. Test Panel");
                 System.out.println("0. Exit");
 
 
@@ -75,7 +79,6 @@ public class HealthcareAppMenu {
                     case 1 -> receptionistMenu();
                     case 2 -> doctorMenu();
                     case 3 -> financeMenu();
-                    //case 4 -> testPanel();
                     case 0 -> System.out.println("Exiting...");
                     default -> System.out.println("Invalid choice, please try again.");
                 }
@@ -95,7 +98,6 @@ public class HealthcareAppMenu {
         System.out.println("3. Process a payment");
         System.out.println("4. View unpaid bills");
         System.out.println("0. Exit");
-
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
 
@@ -135,17 +137,49 @@ public class HealthcareAppMenu {
             case 0 -> System.out.println("Exiting...");
             default -> System.out.println("Invalid choice, please try again.");
         }
+    }
+    
+    private static void receptionistMenu() throws ParseException {
+        System.out.println("===== Healthcare App Menu =====");
+        System.out.println("1. Register a new patient");
+        System.out.println("2. Register a new doctor");
+        System.out.println("3. Schedule a new appointment");
+        System.out.println("4. Cancel an appointment");
+        System.out.println("5. Verify insurance for a patient");
+        System.out.println("6. Process insurance claim");
+        System.out.println("7. Generate a new bill");
+        System.out.println("8. Process a payment");
+        System.out.println("9. View unpaid bills");
+        System.out.println("10. View all patients");
+        System.out.println("11. View all doctors");
+        System.out.println("12. View all appointments");
+        System.out.println("13. View all insurance providers");
+        System.out.println("14. View all bills");
+        System.out.println("0. Exit");
+
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1 -> registerPatient();
+            case 2 -> registerDoctor();
+            case 3 -> scheduleAppointment();
+            case 4 -> cancelAppointment();
+            case 5 -> verifyInsurance();
+            case 6 -> processInsuranceClaim();
+            case 7 -> generateBill();
+            case 8 -> processPayment();
+            case 9 -> viewUnpaidBills();
+            case 10 -> viewAllPatient();
+            case 11 -> viewAllDoctors();
+            case 12 -> viewAllAppointments();
+            case 13 -> viewAllInsuranceProviders();
+            case 14 -> viewAllBills();
+            case 0 -> System.out.println("Exiting...");
+            default -> System.out.println("Invalid choice, please try again.");
+        }
 
     }
-
-   // private static void testPanel() {
-//        insuranceProcessorTest.setUp();
-//        insuranceProcessorTest.testVerifyInsuranceWithInvalidProvider();
-//        insuranceProcessorTest.testVerifyInsuranceWithValidProvider();
-//        insuranceProcessorTest.testProcessClaimWithValidProvider();
-//        insuranceProcessorTest.testProcessClaimWithInvalidProvider();
-
-   // }
 
     private static void addTreatment() {
         System.out.println("===== Healthcare App Menu =====");
@@ -184,106 +218,78 @@ public class HealthcareAppMenu {
         patientRegistry.printPatients();
     }
 
-    private static void receptionistMenu() throws ParseException {
-        System.out.println("===== Healthcare App Menu =====");
-        System.out.println("1. Register a new patient");
-        System.out.println("2. Register a new doctor");
-        System.out.println("3. Schedule a new appointment");
-        System.out.println("4. Cancel an appointment");
-        System.out.println("5. Verify insurance for a patient");
-        System.out.println("6. Process insurance claim");
-        System.out.println("7. Generate a new bill");
-        System.out.println("8. Process a payment");
-        System.out.println("9. View unpaid bills");
-        System.out.println("10. View all patients");
-        System.out.println("11. View all doctors");
-        System.out.println("12. View all appointments");
-        System.out.println("13. View all insurance providers");
-        System.out.println("14. View all bills");
-        System.out.println("0. Exit");
-
-        System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
-
-        switch (choice) {
-            case 1 -> registerPatient();
-            case 2 -> registerDoctor();
-            case 3 -> scheduleAppointment();
-            case 4 -> cancelAppointment();
-            case 5 -> verifyInsurance();
-            case 6 -> processInsuranceClaim();
-            case 7 -> generateBill();
-            case 8 -> processPayment();
-            case 9 -> viewUnpaidBills();
-            case 0 -> System.out.println("Exiting...");
-            default -> System.out.println("Invalid choice, please try again.");
-        }
-
+    private static void viewAllDoctors() {
+        doctorRegistry.printAllDoctors();
     }
 
+    private static void viewAllInsuranceProviders() {
+        insuranceProcessor.printProviders();
+    }
+    public static void viewAllBills() {
+        billingProcessor.printBills();
+    }
     // This method registers a new patient by prompting the user for various pieces of information
         private static void registerPatient() {
             System.out.println("===== Register Patient =====");
 
             // Ask for the patient's name
-            System.out.print("Enter the patient's name: ");
-            String name = scanner.next();
-
-            // Check if the patient already exists
-            if (patientRegistry.findPatientByName(name) != null) {
-                System.out.println("Patient already exists.");
-                return;
-            }
+            String name; 
+            do{
+                System.out.print("Enter the patient's name: ");
+                name = scanner.next();
+                // Check if the patient already exists
+                if (patientRegistry.findPatientByName(name) != null) {
+                    System.out.println("Patient already exists.");
+                    return;
+                }
+            }while(name == null);
 
             // Ask for the patient's date of birth
-            System.out.println("Enter the patient's date of birth (dd-mm-yyyy) : ");
+            Date date = null;
+            do{System.out.println("Enter the patient's date of birth (dd-mm-yyyy) : ");
             String dob = scanner.next();
-
             // Parse the date of birth
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-            Date date = null;
             try {
                 date = formatter.parse(dob);
-                System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(date));
             } catch (ParseException e) {
                 // Handle invalid date format
                 System.out.println("Invalid date format. Please try again.");
                 return;
-            }
+            }}while(date == null);
             // Generate a patient ID
             int id = patientRegistry.getLastPatientID() + 1;
             System.out.println("The Patient ID is: " + id);
-
             // Ask for the patient's phone number
-
             System.out.println("Enter the patient's phone number: ");
             int phoneNumber;
-            try {
+            do{try {
                 phoneNumber = scanner.nextInt();
             } catch (InputMismatchException e) {
                 // Handle invalid phone number format
                 System.out.println("Invalid phone number format. Please try again.");
                 return;
-            }
-
+            }}while(phoneNumber < 0);
             // Ask for the patient's address
-            System.out.println("Enter the patient's address: ");
-            String address = scanner.next();
-
+            String address;
+            do{System.out.println("Enter the patient's address: ");
+                address = scanner.nextLine();}while(address.isEmpty());
             // Ask for the patient's insurance provider
-            System.out.println("Enter the patient's insurance provider: ");
-            String insuranceProvider = scanner.next();
+            String insuranceProvider;
+            do{System.out.println("Enter the patient's insurance provider: ");
+            insuranceProvider = scanner.nextLine();}while(insuranceProvider.isEmpty());
 
             // Ask for the patient's social security number
             System.out.println("Enter the patient's Social Security Number : ");
             int ssn;
-            try {
+            do{try {
                 ssn = scanner.nextInt();
             } catch (InputMismatchException e) {
                 // Handle invalid social security number format
                 System.out.println("Invalid Social Security Number format. Please try again.");
+                System.out.println("Enter the patient's Social Security Number : ");
                 return;
-            }
+            }}while(ssn < 0);
 
             // Ask for the patient's employer
             System.out.println("Enter the patient's employer : ");
@@ -298,44 +304,42 @@ public class HealthcareAppMenu {
 
     private static void cancelAppointment() {
         //TODO
-        System.out.println("Enter the patient's name: ");
-        String patientName = scanner.next();
+        System.out.println("===== Cancel Appointment =====");
 
-        // Find the patient by name
-        Patient patient = patientRegistry.findPatientByName(patientName);
-        if (patient == null) {
-            System.out.println("No matching patients found.");
+        if(appointmentScheduler.getNumberOfAppointments() == 0) {
+            System.out.println("No appointments to cancel.");
             return;
         }
-        doctorRegistry.printAllDoctors();
-        // Prompt user to enter doctor's ID
-        System.out.println("Enter the doctor's ID: ");
-        int doctorID = scanner.nextInt();
-        Doctor doctor = doctorRegistry.findDoctorByID(doctorID);
-
-        // Find the appointment for the patient and doctor
-        Appointment appointment = appointmentScheduler.findAppointment(patient, doctor);
-        if (appointment == null) {
-            System.out.println("No matching appointment found.");
-            return;
-        }
-
-        // Cancel the appointment
-        appointmentScheduler.cancelAppointment(appointment);
-        System.out.println("Appointment cancelled successfully.");
+        else{
+            System.out.println("Appointments to cancel: ");
+            appointmentScheduler.printAppointments();
+            System.out.println("Enter the appointment's ID: ");
+            int appointmentID = scanner.nextInt();
+            Appointment appointment = appointmentScheduler.gAppointmentByID(appointmentID);
+            System.out.println(appointment);
+            if (appointment == null) {
+                System.out.println("Invalid appointment ID.");
+                return;
+            }
+            // Cancel the appointment
+            appointmentScheduler.cancelAppointment(appointment);
+            System.out.println("Appointment cancelled successfully.");}
+        // Print all appointments
     }
-
     private static void registerDoctor() {
-        // TODO: Implement this method
         System.out.println("===== Register Doctor =====");
-        System.out.println("Enter the doctor's name: ");
-        String name = scanner.next();
-        System.out.println("Enter the doctor's last name :");
-        String lastName = scanner.next();
+        String name;
+        do{System.out.println("Enter the doctor's name: ");
+        name = scanner.next();}while(name.isEmpty());
+        String lastName;
+        do{System.out.println("Enter the doctor's last name :");
+        lastName = scanner.next();}while(lastName.isEmpty());
         int doctorID = doctorRegistry.getNumberOfDoctors() + 1;
         System.out.println("The Doctor ID is: " + doctorID);
-        System.out.println("Enter the doctor's specialty: ");
-        String specialty = scanner.next();
+        String specialty;
+        do{System.out.println("Enter the doctor's specialty: ");
+        specialty = scanner.next();} while(specialty.isEmpty());
+        
         System.out.println("Enter the doctor's date of birth : ");
         String dob = scanner.next();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -347,17 +351,21 @@ public class HealthcareAppMenu {
             System.out.println("Invalid date format. Please try again.");
             return;
         }
-        System.out.println("Enter the doctor's phone number: ");
         int phoneNumber;
+        do{
+        System.out.println("Enter the doctor's phone number: ");
         try {
             phoneNumber = scanner.nextInt();
         } catch (InputMismatchException e) {
             // Handle invalid phone number format
             System.out.println("Invalid phone number format. Please try again.");
             return;
-        }
+        }}while(phoneNumber < 0);
+        String address;
+        do{
         System.out.println("Enter the doctor's address: ");
-        String address = scanner.next();
+        address = scanner.next();}while(address.isEmpty());
+
         System.out.println("Enter the doctor's seneriority : ");
         int seniority;
         try {
@@ -387,8 +395,8 @@ public class HealthcareAppMenu {
         System.out.println("===== Schedule Appointment =====");
         patientRegistry.printPatients();
         System.out.println("Enter the patient's ID: ");
-        int ID = scanner.nextInt();
-        Patient patient = patientRegistry.findPatientByID(ID);
+        int patientID = scanner.nextInt();
+        Patient patient = patientRegistry.findPatientByID(patientID);
             if (patient == null) {
                 System.out.println("No matching patients found.");
                 return;
@@ -397,15 +405,27 @@ public class HealthcareAppMenu {
         System.out.println("Enter the doctor's ID: ");
         int doctorID = scanner.nextInt();
         Doctor doctorFound = doctorRegistry.findDoctorByID(doctorID);
-        System.out.println("Enter the date of the appointment (dd-mm-yyyy) : ");
-        String date = scanner.next();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-        Date dateOfAppointment = formatter.parse(date);
+        Date date = null;
+        do {
+            System.out.println("Enter the date of appointment (dd-mm-yyyy) : ");
+            String dob = scanner.next();
+            // Parse the date of birth
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            try {
+                date = formatter.parse(dob);
+            } catch (ParseException e) {
+                // Handle invalid date format
+                System.out.println("Invalid date format. Please try again.");
+                return;
+            }
+        } while (date == null);
         System.out.println("Enter the duration of the appointment: ");
         int duration  = scanner.nextInt();
         System.out.println("Enter the price of the appointment: ");
         int price = scanner.nextInt();
-        appointmentScheduler.scheduleAppointment(patient, doctorFound, dateOfAppointment , price, duration);
+        int ID = appointmentScheduler.getNumberOfAppointments() + 1;
+        appointmentScheduler.scheduleAppointment(patient, doctorFound, date , price, duration, ID);
+        System.out.println("Appointment scheduled successfully.");
     }
 
     private static void verifyInsurance() {

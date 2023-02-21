@@ -13,8 +13,8 @@ public class AppointmentScheduler {
         return appointments;
     }
 
-    public void scheduleAppointment(Patient patient, Doctor doctor, Date date, int price, int duration) {
-        Appointment appointment = new Appointment(date, doctor, patient, price, duration);
+    public void scheduleAppointment(Patient patient, Doctor doctor, Date date, int price, int duration, int id) {
+        Appointment appointment = new Appointment(id, date, doctor, patient, price, duration);
         appointments.add(appointment);
     }
 
@@ -55,5 +55,22 @@ public class AppointmentScheduler {
         for (Appointment appointment : appointments) {
             System.out.println(appointment);
         }
+    }
+
+    public int getNumberOfAppointments() {
+        return appointments.size();
+    }
+
+    public void removeAppointment(Appointment appointment) {
+        appointments.remove(appointment);
+    }
+
+    public Appointment gAppointmentByID(int id) {
+        for (Appointment appointment : appointments) {
+            if (appointment.getId() == id) {
+                return appointment;
+            }
+        }
+        return null;
     }
 }

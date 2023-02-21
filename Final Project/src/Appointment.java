@@ -7,13 +7,16 @@ public class Appointment{
 
     Patient patient;
     private int duration;
+    private final int id;
 
-    public Appointment(Date date, Doctor doctor, Patient patient, int price, int duration) {
+    public Appointment(int id, Date date, Doctor doctor, Patient patient, int price, int duration) {
         this.date = date;
         this.patient = patient;
         this.doctor = doctor;
         this.price = price;
         this.duration = duration;
+        this.id = id;
+
     }
 
 
@@ -57,14 +60,19 @@ public class Appointment{
         this.duration = duration;
     }
 
+    public int getId() {
+        return this.id;
+    }
+    
     @Override
     public String toString() {
         return "Appointment{" +
-                "date=" + date +
-                ", doctor='" + doctor + '\'' +
-                ", patient='" + patient + '\'' +
-                ", price=" + price +
-                ", duration=" + duration +
-                '}';
+            " date='" + getDate() + "'" +
+            ", doctor='" + getDoctor() + "'" +
+            ", patient='" + getPatient() + "'" +
+            ", price='" + getPrice() + "'" +
+            ", duration='" + getDuration() + "'" +
+            ", id='" + getId() + "'" +
+            "}";
     }
 }

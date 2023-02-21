@@ -15,8 +15,8 @@ public class TestClass {
         Patient lisa = new Patient("Lisa Smith", date, 555-4321, null, "123 Main St", 5551234,  "MAAF", "12345",  123445);
         // Schedule some appointments
         AppointmentScheduler scheduler = new AppointmentScheduler();
-        scheduler.scheduleAppointment(bob, john, new Date(), 100, 30);
-        scheduler.scheduleAppointment(lisa, jane, new Date(), 150, 60);
+        scheduler.scheduleAppointment( bob, john, new Date(), 100, 30, 1);
+        scheduler.scheduleAppointment(lisa, jane, new Date(), 150, 60, 2);
 
         // Verify insurance
         InsuranceProcessor processor = new InsuranceProcessor();
