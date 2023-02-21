@@ -489,8 +489,9 @@ public class HealthcareAppMenu {
         }
 
         Date date = null;
-        String dateOfA = scanner.next();
         do{System.out.println("Enter the date of the appointment (dd-mm-yyyy) : ");
+            String dateOfA = scanner.next();
+
             // Parse the date of birth
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             try {
