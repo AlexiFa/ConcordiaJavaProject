@@ -122,9 +122,8 @@ public class Patient extends Person {
     public void updateMedicalHistory(){
         try{
             PrintWriter outFile = new PrintWriter("MedicalHistory" + this.ID + ".out");
-            if (MedicalHistory.isEmpty()){
-                outFile.println("Name: " + this.getName() + "\n" + "Date of Birth: " + this.getDateOfBirth() + "\n" + "ID: " + this.ID + "\n" + "Medical History: ");
-            }
+            outFile.println("Name: " + this.getName() + "\n" + "Date of Birth: " + this.getDateOfBirth() + "\n" + "ID: " + this.ID + "\n" + "Medical History: ");
+            outFile.println();
             for(Treatment treatment : MedicalHistory){
                 outFile.println(treatment);
             }
