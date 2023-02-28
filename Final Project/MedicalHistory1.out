@@ -1,13 +1,13 @@
 Name: John Doe
-Date of Birth: Mon Feb 20 22:47:08 EST 2023
+Date of Birth: Tue Feb 21 09:59:21 EST 2023
 ID: 1
 Medical History: 
 
-doctor = Doctor{doctorId=1, lastName='1', address='123 Main St', phoneNumber=5551234, seniority=20, dateOfEmployment=Mon Feb 20 22:47:08 EST 2023, speciality='Cardiology'}
+doctor = Doctor{doctorId=1, lastName='1', address='123 Main St', phoneNumber=5551234, seniority=20, dateOfEmployment=Tue Feb 21 09:59:21 EST 2023, speciality='Cardiology'}
 description = Treatment 1
-date = Mon Feb 20 22:47:08 EST 2023
+date = Tue Feb 21 09:59:21 EST 2023
 
-doctor = Doctor{doctorId=1, lastName='1', address='123 Main St', phoneNumber=5551234, seniority=20, dateOfEmployment=Mon Feb 20 22:47:08 EST 2023, speciality='Cardiology'}
-description = 1
-date = Wed Dec 12 00:00:00 EST 1212
+doctor = Doctor{doctorId=1, lastName='1', address='123 Main St', phoneNumber=5551234, seniority=20, dateOfEmployment=Tue Feb 21 09:59:21 EST 2023, speciality='Cardiology'}
+description = medecine
+date = Tue Oct 10 00:00:00 EDT 2023
 
